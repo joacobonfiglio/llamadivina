@@ -1,28 +1,11 @@
+import Image from "next/image";
 import { wa } from "@/lib/site";
 
-export function Isotipo({ className, mono = false }: { className?: string; mono?: boolean }) {
-  if (mono)
-    return (
-      <svg className={className} viewBox="0 0 60 76" aria-hidden="true">
-        <path
-          fillRule="evenodd"
-          fill="currentColor"
-          d="M30 2S6 26 6 46a24 24 0 0 0 48 0C54 26 30 2 30 2Zm0 28s-11 11-11 20a11 11 0 0 0 22 0c0-9-11-20-11-20Zm0 18a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z"
-        />
-      </svg>
-    );
+export function Isotipo({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 60 76" aria-hidden="true">
-      <defs>
-        <linearGradient id="iso-g" x1="0" y1="1" x2="0" y2="0">
-          <stop offset="0" stopColor="#D97F68" />
-          <stop offset=".55" stopColor="#EDA65C" />
-          <stop offset="1" stopColor="#FFE2B3" />
-        </linearGradient>
-      </defs>
-      <path d="M30 2S6 26 6 46a24 24 0 0 0 48 0C54 26 30 2 30 2Z" fill="url(#iso-g)" />
-      <path d="M30 30s-11 11-11 20a11 11 0 0 0 22 0c0-9-11-20-11-20Z" fill="#1D1830" opacity=".92" />
-      <circle cx="30" cy="52" r="4" fill="#FFE2B3" />
+      <path d="M30 2S6 26 6 46a24 24 0 0 0 48 0C54 26 30 2 30 2Z" fill="currentColor" />
+      <path d="M30 30s-11 11-11 20a11 11 0 0 0 22 0c0-9-11-20-11-20Z" fill="var(--hueco, #1D1830)" />
     </svg>
   );
 }
@@ -41,12 +24,12 @@ export function WaIcon({ className = "ico" }: { className?: string }) {
 export function WaButton({
   text,
   children,
-  variant = "luz",
+  variant = "primario",
   className = "",
 }: {
   text: string;
   children: React.ReactNode;
-  variant?: "luz" | "tinta" | "llama" | "linea";
+  variant?: "primario" | "claro" | "borde";
   className?: string;
 }) {
   return (
@@ -57,6 +40,11 @@ export function WaButton({
   );
 }
 
-export function Eyebrow({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  return <span className={`eyebrow ${className}`}>{children}</span>;
+/** Espacio para foto. Sin `src` muestra un fondo de la paleta, listo para reemplazar. */
+export function Foto({ src, alt, className = "" }: { src: string | null; alt: string; className?: string }) {
+  return (
+    <div className={`foto ${src ? "" : "foto-vacia"} ${className}`}>
+      {src ? <Image src={src} alt={alt} fill sizes="(max-width: 800px) 100vw, 50vw" /> : <Isotipo className="foto-iso" />}
+    </div>
+  );
 }

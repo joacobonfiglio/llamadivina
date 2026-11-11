@@ -11,8 +11,6 @@
   "dependencies": {
     "@fontsource-variable/fraunces": "5.2.5",
     "@fontsource-variable/hanken-grotesk": "5.2.5",
-    "lenis": "1.3.11",
-    "motion": "12.23.12",
     "next": "16.4.3",
     "react": "19.2.0",
     "react-dom": "19.2.0"
