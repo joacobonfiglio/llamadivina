@@ -1,7 +1,7 @@
 # Llama Divina — web
 
-Home experiencial para **Llama Divina** (Reiki y Registros Akáshicos con May Espelet, Mar del Plata).
-Next.js 16 (App Router) + TypeScript. Diseño simple, sin librerías de UI.
+Web de **Llama Divina** (Reiki y Registros Akáshicos con May Espelet, Mar del Plata).
+Next.js 16 (App Router) + TypeScript. Tipografías Cormorant Garamond + DM Sans.
 
 ## Desarrollo
 
@@ -11,24 +11,25 @@ npm run dev        # http://localhost:3000
 npm run build      # build de producción
 ```
 
-## Deploy en Vercel
-
-1. Subí este repo a GitHub (`git init && git add . && git commit -m "Llama Divina web" && git branch -M main && git remote add origin <URL> && git push -u origin main`).
-2. En Vercel: **Add New → Project → Import** el repo. Framework: Next.js (se detecta solo). Sin variables de entorno.
-3. Conectá el dominio (ej. `llamadivina.com.ar`) y actualizá `SITE.url` en `lib/site.ts`.
-
 ## Dónde se edita cada cosa
 
 | Qué | Dónde |
 | --- | --- |
 | WhatsApp, nombre, ciudad | `lib/site.ts` → `SITE` |
-| Sesiones | `lib/site.ts` → `SESIONES` |
 | Preguntas frecuentes | `lib/site.ts` → `FAQ` |
-| Fotos (portada y May) | Subir a `/public` y poner la ruta en `lib/site.ts` → `FOTOS` |
-| Pasos de "Cómo es una sesión" | `components/Secciones.tsx` → `PASOS` |
-| Colores y tipografías | `app/globals.css` (variables en `:root`) |
+| Textos de cada sección | `components/Secciones.tsx` |
+| Menú | `components/Header.tsx` |
+| Colores y tipografía | `app/globals.css` (variables en `:root`) |
+| Fotos | `public/img/` (se importan en `components/Secciones.tsx`) |
+
+## Fotos
+
+Las fotos de paisaje son de Unsplash (licencia libre, uso comercial permitido sin atribución).
+Cuando haya fotos propias de May o del espacio, reemplazar el archivo en `public/img/` con el mismo nombre
+(por ejemplo `bosque-sendero.jpg` en la sección "Soy May").
 
 ## Secciones
 
-Portada · Sesiones · Cómo es una sesión · Sobre May · Preguntas frecuentes · Contacto.
-Sin dependencias de animación. Todos los botones abren WhatsApp con un mensaje ya escrito.
+Portada · Soy May · Valores · Frase · ¿Qué te llama hoy? (Reiki, Registros, Tres encuentros) ·
+Tu primer encuentro · Preguntas · Invitación final · Pie.
+Todos los botones abren WhatsApp con un mensaje ya escrito.

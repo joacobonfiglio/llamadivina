@@ -1,8 +1,6 @@
-import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
-import May from "@/components/May";
-import Cierre from "@/components/Cierre";
-import { ComoEs, Preguntas, Sesiones } from "@/components/Secciones";
+import Header from "@/components/Header";
+import Reveal from "@/components/Reveal";
+import { Caminos, Frase, Hero, Invitacion, Pie, Preguntas, Primer, SoyMay, Valores } from "@/components/Secciones";
 
 export default function Home() {
   return (
@@ -10,15 +8,19 @@ export default function Home() {
       <a className="skip" href="#sesiones">
         Ir al contenido
       </a>
-      <Nav />
+      <Header />
       <main>
         <Hero />
-        <Sesiones />
-        <ComoEs />
-        <May />
+        <SoyMay />
+        <Valores />
+        <Frase />
+        <Caminos />
+        <Primer />
         <Preguntas />
+        <Invitacion />
       </main>
-      <Cierre />
+      <Pie />
+      <Reveal />
     </>
   );
 }
