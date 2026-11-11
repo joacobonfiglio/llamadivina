@@ -22,17 +22,21 @@ npm run build      # build de producción
 | Qué | Dónde |
 | --- | --- |
 | WhatsApp, URL, nombre | `lib/site.ts` → `SITE` |
+| Tarjetas de sesiones (Reiki, Registros, Tres encuentros) | `lib/site.ts` → `SESIONES` |
 | Opciones de "¿Qué te llama hoy?" | `lib/site.ts` → `LLAMADOS` |
+| Palabras de la cinta | `lib/site.ts` → `PALABRAS` |
 | Frases del mazo | `lib/site.ts` → `FRASES` |
-| Preguntas frecuentes (+ schema FAQ) | `lib/site.ts` → `FAQ` |
-| SEO, Open Graph, JSON-LD | `app/layout.tsx` |
+| Preguntas frecuentes | `lib/site.ts` → `FAQ` |
+| Los 4 momentos de la sesión | `components/Viaje.tsx` → `MOMENTOS` |
 | Estilos y paleta | `app/globals.css` (tokens en `:root`) |
-| Foto de May | `components/May.tsx` (reemplazar el arco por `next/image` con `/public/may.jpg`) |
+| Foto de May | `components/May.tsx` (agregar `/public/may.jpg` y reemplazar `.may-sky` por `next/image`) |
 
 ## Secciones
 
-Hero con campo de energía (WebGL) · Manifiesto que se ilumina con el scroll · ¿Qué te llama hoy? (puertas) ·
-Reiki y Registros (ilustraciones generativas) · Respirá con la llama (1 o 3 minutos) · Tres encuentros (velas) ·
-Soy May · Una frase para hoy (mazo) · Cómo empezamos · Preguntas · Cierre.
+Hero con campo de energía (WebGL) · Cinta de palabras · **La experiencia**: una hora con May en 4 momentos
+(scroll horizontal en desktop, tarjetas apiladas en el teléfono) · **Sesiones**: selector "¿Qué te llama hoy?" que recomienda
+una de las 3 tarjetas · Respirá con la llama · Soy May (la cita se ilumina con el scroll) · Una frase para hoy ·
+Cómo empezamos + Preguntas · Cierre.
 
-Todo respeta `prefers-reduced-motion`. Todos los CTA abren WhatsApp con un mensaje ya escrito.
+Animaciones con `motion` y scroll suave con `lenis`. Todo respeta `prefers-reduced-motion`.
+Todos los CTA abren WhatsApp con un mensaje ya escrito.

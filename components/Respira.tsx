@@ -148,7 +148,7 @@ export default function Respira() {
     <section className={`respira is-${estado}`} id="respira">
       <div className="grain" aria-hidden="true" />
       <div className="respira-in">
-        <div className="respira-copy" data-reveal>
+        <div className="respira-copy">
           <span className="eyebrow">Un regalo antes de escribir</span>
           <h2 className="h2">
             Respirá <em>con la llama.</em>
@@ -186,7 +186,7 @@ export default function Respira() {
           </div>
         </div>
 
-        <div className="respira-ctrl" data-reveal>
+        <div className="respira-ctrl">
           {estado !== "run" ? (
             <>
               <div className="seg" role="radiogroup" aria-label="Duración">

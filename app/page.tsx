@@ -1,40 +1,36 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import Manifesto from "@/components/Manifesto";
-import Llamado from "@/components/Llamado";
-import Practicas from "@/components/Practicas";
+import Marquee from "@/components/Marquee";
+import Viaje from "@/components/Viaje";
+import Sesiones from "@/components/Sesiones";
 import Respira from "@/components/Respira";
-import Encuentros from "@/components/Encuentros";
 import May from "@/components/May";
 import Frase from "@/components/Frase";
-import Pasos from "@/components/Pasos";
-import Faq from "@/components/Faq";
+import Empezar from "@/components/Empezar";
 import Cierre from "@/components/Cierre";
-import FloatingWA from "@/components/FloatingWA";
-import Reveal from "@/components/Reveal";
+import StickyCTA from "@/components/StickyCTA";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export default function Home() {
   return (
     <>
-      <a className="skip" href="#llamado">
-        Ir al contenido
+      <a className="skip" href="#sesiones">
+        Ir a las sesiones
       </a>
       <Nav />
       <main>
         <Hero />
-        <Manifesto />
-        <Llamado />
-        <Practicas />
+        <Marquee />
+        <Viaje />
+        <Sesiones />
         <Respira />
-        <Encuentros />
         <May />
         <Frase />
-        <Pasos />
-        <Faq />
+        <Empezar />
       </main>
       <Cierre />
-      <FloatingWA />
-      <Reveal />
+      <StickyCTA />
+      <SmoothScroll />
     </>
   );
 }

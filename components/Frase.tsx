@@ -33,7 +33,7 @@ export default function Frase() {
     <section className="frase" id="frase">
       <div className="grain" aria-hidden="true" />
       <div className="wrap frase-in">
-        <div data-reveal>
+        <div>
           <span className="eyebrow">Un mensaje de la llama</span>
           <h2 className="h2">
             Una frase <em>para hoy.</em>
@@ -41,7 +41,7 @@ export default function Frase() {
           <p className="sec-lead">Respirá, pensá en algo que te esté pasando y tocá el mazo.</p>
         </div>
 
-        <div className="mazo" data-reveal>
+        <div className="mazo">
           <span className="carta-fondo f1" aria-hidden="true" />
           <span className="carta-fondo f2" aria-hidden="true" />
           <button type="button" className={`carta ${flip ? "is-flip" : ""}`} onClick={sacar} aria-label={flip ? "Sacar otra frase" : "Dar vuelta la carta"}>

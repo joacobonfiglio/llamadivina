@@ -113,3 +113,53 @@ export const FAQ = [
     a: "No. Estas prácticas acompañan tu bienestar, pero no sustituyen la atención médica ni psicológica.",
   },
 ];
+
+export type Sesion = {
+  id: "reiki" | "registros" | "tres";
+  nombre: string;
+  titulo: string;
+  em: string;
+  bajada: string;
+  ideal: string[];
+  meta: string[];
+  cta: string;
+  mensaje: string;
+};
+
+export const SESIONES: Sesion[] = [
+  {
+    id: "reiki",
+    nombre: "Reiki",
+    titulo: "La energía,",
+    em: "en calma.",
+    bajada: "Te recostás, respirás y dejás que la energía se acomode. Para cuando el cuerpo pide pausa y la cabeza no para.",
+    ideal: ["Cansancio o tensión acumulada", "Ganas de volver al cuerpo", "Nunca hiciste nada “espiritual”"],
+    meta: ["1 hora", "Individual", "Presencial"],
+    cta: "Reservar Reiki",
+    mensaje: "Hola May, me gustaría reservar una sesión de Reiki.",
+  },
+  {
+    id: "registros",
+    nombre: "Registros Akáshicos",
+    titulo: "Tus preguntas,",
+    em: "tu camino.",
+    bajada: "Traés tus preguntas, abrimos tus registros y escuchamos qué tienen para decirte. Te ayudo a formularlas antes.",
+    ideal: ["Una decisión que te cuesta tomar", "Preguntas que vuelven una y otra vez", "Un cambio de etapa"],
+    meta: ["1 hora", "Individual", "Presencial"],
+    cta: "Reservar una lectura",
+    mensaje: "Hola May, me gustaría hacer una lectura de Registros Akáshicos.",
+  },
+  {
+    id: "tres",
+    nombre: "Tres encuentros",
+    titulo: "Un proceso,",
+    em: "con tiempo.",
+    bajada: "Tres sesiones de una hora para acompañar lo que se va moviendo. Combinás Reiki y Registros según lo que aparezca.",
+    ideal: ["Algo se movió y querés sostenerlo", "Querés combinar las dos prácticas", "Preferís un acompañamiento"],
+    meta: ["3 × 1 hora", "Combinable", "Presencial"],
+    cta: "Quiero los tres encuentros",
+    mensaje: "Hola May, quiero sostener un proceso. ¿Me contás cómo es el pack de tres encuentros?",
+  },
+];
+
+export const PALABRAS = ["Calma", "Presencia", "Claridad", "Descanso", "Escucha", "Intuición", "Respuestas", "Volver a vos"];

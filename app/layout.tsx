@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/fraunces/full.css";
 import "@fontsource-variable/fraunces/full-italic.css";
 import "@fontsource-variable/hanken-grotesk/wght.css";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 import { SITE, FAQ } from "@/lib/site";
 
