@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import Reveal from "@/components/Reveal";
+import Efectos from "@/components/Efectos";
 import { Cierre, Hero, Manifiesto, Pie, Preguntas, Primer, Sesiones, SoyMay } from "@/components/Secciones";
 
 export default function Home() {
@@ -19,7 +19,7 @@ export default function Home() {
         <Cierre />
       </main>
       <Pie />
-      <Reveal />
+      <Efectos />
     </>
   );
 }

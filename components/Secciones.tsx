@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { FAQ, SITE } from "@/lib/site";
 import { Arrow, Llama, Wa, WaIcon } from "./ui";
 import imgMar from "@/public/img/mar-atardecer.jpg";
@@ -13,10 +13,9 @@ export function Hero() {
   return (
     <section className="hero" id="inicio">
       <div className="hero-izq">
-        <h1 className="hero-titulo entra entra-1">
-          Encendé
-          <br />
-          tu <em>pausa.</em>
+        <h1 className="hero-titulo">
+          <span className="linea"><span>Encendé</span></span>
+          <span className="linea"><span>tu <em>pausa.</em></span></span>
         </h1>
         <div className="hero-pie entra entra-2">
           <p>
@@ -30,15 +29,20 @@ export function Hero() {
       </div>
 
       <div className="hero-der">
-        <span className="hero-sol" aria-hidden="true" />
-        <span className="etq hero-num">( 01 )</span>
+        <span className="hero-sol-wrap" data-parallax="0.18" aria-hidden="true">
+          <span className="hero-sol" />
+        </span>
         <ul className="etq hero-lista" aria-label="Sesiones">
           <li>Reiki</li>
           <li>Registros Akáshicos</li>
           <li>Tres encuentros</li>
         </ul>
-        <div className="mascara-llama hero-llama entra entra-3">
-          <Image src={imgMar} alt="El mar al atardecer en la costa" placeholder="blur" priority fill sizes="(max-width: 900px) 80vw, 460px" />
+        <div className="hero-llama" data-parallax="-0.08">
+          <div className="entra entra-3">
+            <div className="mascara-llama respira">
+              <Image src={imgMar} alt="El mar al atardecer en la costa" placeholder="blur" priority fill sizes="(max-width: 900px) 80vw, 460px" />
+            </div>
+          </div>
         </div>
         <p className="hero-lema">Tu pausa · Tu encuentro · Tu luz</p>
       </div>
@@ -47,27 +51,55 @@ export function Hero() {
 }
 
 /* ——— Manifiesto ——— */
+type Trozo = string | { img: StaticImageData; forma: "pildora" | "circulo" | "llama"; alt: string };
+const MANIFIESTO: Trozo[] = [
+  "No hace falta tener",
+  { img: imgMar, forma: "pildora", alt: "" },
+  "todas las respuestas.",
+  "*Podés empezar por*",
+  { img: imgBruma, forma: "circulo", alt: "" },
+  "*escucharte.*",
+  "Lo espiritual también habita en lo",
+  { img: imgVela, forma: "llama", alt: "" },
+  "cotidiano.",
+];
+
 export function Manifiesto() {
   const valores = [
-    ["Un momento para vos", "Una hora sin apuro, solo tuya."],
-    ["Escucha sin juicios", "Llegás como estés. Todo tiene lugar."],
-    ["Conexión con tu interior", "La respuesta vive en vos; yo acompaño."],
+    ["Un momento", "para vos", "circulo"],
+    ["Escucha", "sin juicios", "arco"],
+    ["Conexión con", "tu interior", "llama"],
   ];
+  let w = 0;
   return (
     <section className="manifiesto">
       <div className="container">
-        <span className="etq" data-reveal>( 02 ) · Llama Divina</span>
-        <p className="manifiesto-txt" data-reveal>
-          No hace falta tener todas las respuestas. <em>Podés empezar por escucharte.</em> Lo espiritual también habita
-          en lo cotidiano
-          <Llama className="manifiesto-llama" />
+        <p className="manifiesto-txt" data-palabras>
+          {MANIFIESTO.map((t, i) => {
+            if (typeof t !== "string")
+              return (
+                <span key={i} className={`en-linea en-${t.forma}`} data-pop>
+                  <Image src={t.img} alt={t.alt} fill sizes="200px" />
+                </span>
+              );
+            const it = t.startsWith("*");
+            return t
+              .replace(/\*/g, "")
+              .split(" ")
+              .map((pal, j) => (
+                <span key={`${i}-${j}`} className={`pal ${it ? "pal-it" : ""}`} style={{ ["--i" as string]: w++ }}>
+                  {pal}{" "}
+                </span>
+              ));
+          })}
         </p>
         <div className="valores">
-          {valores.map(([t, d], i) => (
-            <div className="valor" key={t} data-reveal style={{ transitionDelay: `${i * 80}ms` }}>
-              <span className="valor-n">{String(i + 1).padStart(2, "0")}</span>
-              <h3>{t}</h3>
-              <p>{d}</p>
+          {valores.map(([a, b, forma], i) => (
+            <div className={`valor valor-${forma}`} key={a} data-reveal style={{ transitionDelay: `${i * 120}ms` }}>
+              <span className="valor-forma" aria-hidden="true" />
+              <p>
+                {a} <em>{b}</em>
+              </p>
             </div>
           ))}
         </div>
@@ -80,10 +112,9 @@ export function Manifiesto() {
 const SESIONES = [
   {
     id: "reiki",
-    n: "( 03 )",
     tag: "Pausa & presencia",
     t: "Reiki",
-    p: "Una práctica espiritual centrada en la energía y la presencia. Te recostás, respirás y dejás que el cuerpo se acomode.",
+    p: "Te recostás, respirás y dejás que la energía se acomode. Una pausa para el cuerpo y la cabeza.",
     para: ["Cansancio o tensión acumulada", "Ganas de frenar y volver al cuerpo", "Tu primera vez en algo así"],
     cta: "Quiero un momento de calma",
     msg: "Hola May, quiero un momento de calma. Me gustaría reservar una sesión de Reiki.",
@@ -92,10 +123,9 @@ const SESIONES = [
   },
   {
     id: "registros",
-    n: "( 04 )",
     tag: "Guía & nuevas miradas",
     t: "Registros Akáshicos",
-    p: "Para cuando buscás una guía más allá de la razón. Traés tus preguntas, abrimos tus registros y escuchamos qué tienen para decirte.",
+    p: "Traés tus preguntas, abrimos tus registros y escuchamos qué tienen para decirte. Una guía más allá de la razón.",
     para: ["Una decisión que te cuesta tomar", "Preguntas que vuelven una y otra vez", "Un cambio de etapa"],
     cta: "Quiero explorar mi camino",
     msg: "Hola May, quiero explorar mi camino. Me interesa una lectura de Registros Akáshicos.",
@@ -107,28 +137,28 @@ const SESIONES = [
 export function Sesiones() {
   return (
     <section className="sesiones" id="sesiones">
-      <div className="sesiones-head container">
-        <h2 className="titulo" data-reveal>
-          ¿Qué te <em>llama</em> hoy?
-        </h2>
-        <p data-reveal>
-          Dos caminos para un mismo encuentro con vos. Sesiones individuales de una hora. Si no sabés por dónde empezar,
-          lo charlamos.
-        </p>
-      </div>
+      <div className="container">
+        <div className="sesiones-head">
+          <h2 className="titulo" data-reveal="titulo">
+            ¿Qué te <em>llama</em> hoy?
+          </h2>
+          <p data-reveal>
+            Dos caminos para un mismo encuentro con vos. Sesiones individuales de una hora, en Mar del Plata.
+          </p>
+        </div>
 
-      {SESIONES.map((s) => (
-        <article className={`sesion sesion-${s.id}`} key={s.id}>
-          <div className="container sesion-in">
-            <div className="sesion-foto" data-reveal>
-              <div className={s.id === "reiki" ? "mascara-circulo" : "mascara-arco"}>
-                <Image src={s.img} alt={s.alt} placeholder="blur" fill sizes="(max-width: 900px) 80vw, 480px" />
+        <div className="sesiones-grid">
+          {SESIONES.map((s, i) => (
+            <article className={`sesion sesion-${s.id}`} key={s.id} data-reveal style={{ transitionDelay: `${i * 120}ms` }}>
+              <div className="sesion-top">
+                <span className="etq">{s.tag}</span>
+                <div className="sesion-foto">
+                  <div className={s.id === "reiki" ? "mascara-circulo" : "mascara-arco"}>
+                    <Image src={s.img} alt={s.alt} placeholder="blur" fill sizes="260px" />
+                  </div>
+                  {s.id === "reiki" ? <span className="orbita" aria-hidden="true"><i /></span> : <span className="arco-eco" aria-hidden="true" />}
+                </div>
               </div>
-            </div>
-            <div className="sesion-copy" data-reveal>
-              <span className="etq">
-                {s.n} · {s.tag}
-              </span>
               <h3 className="sesion-t">{s.t}</h3>
               <p className="sesion-p">{s.p}</p>
               <ul className="sesion-para">
@@ -143,36 +173,28 @@ export function Sesiones() {
                 <Wa text={s.msg} className="btn btn-claro btn-lg">
                   {s.cta} <Arrow />
                 </Wa>
-                <span className="sesion-meta">1 hora · Individual · Presencial</span>
+                <span className="sesion-meta">1 hora · Individual</span>
               </div>
-            </div>
-          </div>
-        </article>
-      ))}
+            </article>
+          ))}
+        </div>
 
-      <div className="tres">
-        <div className="container tres-in">
+        <div className="tres" data-reveal>
           <div className="tres-llamas" aria-hidden="true">
             <Llama />
             <Llama />
             <Llama />
           </div>
-          <div className="tres-copy" data-reveal>
-            <span className="etq">( 05 ) · Dale continuidad a tu espacio</span>
+          <div className="tres-copy">
+            <span className="etq">Dale continuidad a tu espacio</span>
             <h3 className="tres-t">
               Tres encuentros <em>para vos</em>
             </h3>
-            <p>
-              Un pack de tres sesiones de una hora para sostener un proceso. Podés combinar Reiki y Registros según lo
-              que vaya apareciendo.
-            </p>
-            <Wa text="Hola May, me interesa el pack de tres encuentros. ¿Me contás las opciones?" className="btn btn-verde btn-lg">
-              Dar continuidad a mi espacio <Arrow />
-            </Wa>
+            <p>Un pack de tres sesiones para sostener un proceso. Podés combinar Reiki y Registros según lo que aparezca.</p>
           </div>
-          <div className="tres-foto" data-reveal>
-            <Image src={imgVela} alt="Una vela encendida" placeholder="blur" fill sizes="(max-width: 900px) 60vw, 300px" />
-          </div>
+          <Wa text="Hola May, me interesa el pack de tres encuentros. ¿Me contás las opciones?" className="btn btn-verde btn-lg">
+            Dar continuidad <Arrow />
+          </Wa>
         </div>
       </div>
     </section>
@@ -185,7 +207,7 @@ export function SoyMay() {
     <section className="may" id="soy-may">
       <div className="container may-in">
         <div className="may-foto" data-reveal>
-          <div className="mascara-llama">
+          <div className="mascara-llama respira">
             <Image src={imgBosque} alt="Un sendero en el bosque con luz" placeholder="blur" fill sizes="(max-width: 900px) 70vw, 420px" />
           </div>
           <span className="may-sello">
@@ -195,8 +217,8 @@ export function SoyMay() {
           </span>
         </div>
         <div className="may-copy">
-          <span className="etq" data-reveal>( 06 ) · La persona detrás de Llama Divina</span>
-          <h2 className="titulo" data-reveal>
+          <span className="etq" data-reveal>La persona detrás de Llama Divina</span>
+          <h2 className="titulo" data-reveal="titulo">
             Soy May. <em>Qué lindo encontrarnos.</em>
           </h2>
           <div className="may-cols" data-reveal>
@@ -233,8 +255,8 @@ export function Primer() {
     <section className="primer">
       <div className="container">
         <div className="primer-head">
-          <span className="etq" data-reveal>( 07 ) · Simple, cercano y a tu ritmo</span>
-          <h2 className="titulo" data-reveal>
+          <span className="etq" data-reveal>Simple, cercano y a tu ritmo</span>
+          <h2 className="titulo" data-reveal="titulo">
             Tu primer encuentro <em>empieza con una charla.</em>
           </h2>
         </div>
@@ -258,7 +280,7 @@ export function Preguntas() {
     <section className="preguntas" id="preguntas">
       <div className="container preguntas-in">
         <div className="preguntas-head" data-reveal>
-          <span className="etq">( 08 ) · Antes del primer paso</span>
+          <span className="etq">Antes del primer paso</span>
           <h2 className="titulo">
             Quizás te estés <em>preguntando</em>
           </h2>
@@ -287,11 +309,13 @@ export function Preguntas() {
 export function Cierre() {
   return (
     <section className="cierre" id="contacto">
-      <span className="cierre-sol" aria-hidden="true" />
+      <span className="cierre-sol-wrap" data-parallax="0.2" aria-hidden="true">
+        <span className="cierre-sol" />
+      </span>
       <div className="container cierre-in">
         <div className="cierre-copy">
-          <span className="etq" data-reveal>( 09 ) · Escuchá esa pequeña invitación</span>
-          <h2 className="cierre-t" data-reveal>
+          <span className="etq" data-reveal>Escuchá esa pequeña invitación</span>
+          <h2 className="cierre-t" data-reveal="titulo">
             Este momento puede ser <em>para vos.</em>
           </h2>
           <p data-reveal>Si algo de este espacio resuena con vos, escribime. Podemos empezar por una conversación.</p>
@@ -302,7 +326,7 @@ export function Cierre() {
             <span>WhatsApp {SITE.whatsappLabel}</span>
           </div>
         </div>
-        <div className="mascara-llama cierre-llama" data-reveal>
+        <div className="mascara-llama cierre-llama respira">
           <Image src={imgMarRosa} alt="El mar con nubes rosadas" placeholder="blur" fill sizes="(max-width: 900px) 70vw, 420px" />
         </div>
       </div>
@@ -315,7 +339,7 @@ export function Pie() {
   return (
     <footer className="pie">
       <div className="container">
-        <p className="pie-grande" aria-hidden="true">
+        <p className="pie-grande" aria-hidden="true" data-desliza>
           Llama <em>Divina</em>
         </p>
         <div className="pie-grid">
