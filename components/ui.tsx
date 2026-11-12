@@ -1,61 +1,22 @@
 import { wa } from "@/lib/site";
 
-/** Isotipo: llama de trazo fino con una gota de luz adentro. */
-export function Logo({ className }: { className?: string }) {
+/** Silueta de la llama: es el sello gráfico de la marca (máscara de fotos e ícono). */
+export const LLAMA_PATH =
+  "M220 0C260 90 440 190 440 370C440 500 340 600 220 600C100 600 0 500 0 370C0 260 60 190 110 140C115 200 140 240 175 260C160 160 190 70 220 0Z";
+
+export function Llama({ className, title }: { className?: string; title?: string }) {
   return (
-    <svg className={className} viewBox="0 0 40 52" fill="none" aria-hidden="true">
-      <path
-        d="M20 2c3.5 7.5 14 14.6 14 27.2C34 41 27.6 50 20 50S6 41 6 29.2C6 22 10 17.5 13 13.6c.3 4.4 2.1 7 4.3 8.4C16.6 14.8 18 8 20 2Z"
-        stroke="currentColor"
-        strokeWidth="1.3"
-        strokeLinejoin="round"
-      />
-      <path d="M20 26.5c2.4 3.6 6.2 6.9 6.2 11.6A6.2 6.2 0 0 1 20 44.3a6.2 6.2 0 0 1-6.2-6.2c0-4.7 3.8-8 6.2-11.6Z" stroke="currentColor" strokeWidth="1.1" />
+    <svg className={className} viewBox="0 0 440 600" aria-hidden={title ? undefined : true} role={title ? "img" : undefined}>
+      {title && <title>{title}</title>}
+      <path d={LLAMA_PATH} fill="currentColor" />
     </svg>
   );
 }
 
-export function Sparkle({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path d="M12 1.5c.6 5.6 4.9 9.9 10.5 10.5-5.6.6-9.9 4.9-10.5 10.5C11.4 16.9 7.1 12.6 1.5 12 7.1 11.4 11.4 7.1 12 1.5Z" stroke="currentColor" strokeWidth="1" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-export function Arrow({ className = "arrow", diag = true }: { className?: string; diag?: boolean }) {
+export function Arrow({ className = "arrow" }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 16 16" fill="none" aria-hidden="true">
-      {diag ? (
-        <path d="M4.5 11.5l7-7M5.5 4.5h6v6" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-      ) : (
-        <path d="M2.5 8h11M9.5 4l4 4-4 4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-      )}
-    </svg>
-  );
-}
-
-/** Flor de la vida simple (Reiki). */
-export function FlorDeVida({ className }: { className?: string }) {
-  const r = 14;
-  const c = [[0, 0], ...Array.from({ length: 6 }, (_, i) => [r * Math.cos((i * Math.PI) / 3), r * Math.sin((i * Math.PI) / 3)])];
-  return (
-    <svg className={className} viewBox="-46 -46 92 92" fill="none" aria-hidden="true">
-      <circle r={r * 2.05} stroke="currentColor" strokeWidth=".7" />
-      {c.map(([x, y], i) => (
-        <circle key={i} cx={x.toFixed(2)} cy={y.toFixed(2)} r={r} stroke="currentColor" strokeWidth=".7" />
-      ))}
-    </svg>
-  );
-}
-
-/** Estrella de dos triángulos en un círculo (Registros). */
-export function Estrella({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="-46 -46 92 92" fill="none" aria-hidden="true">
-      <circle r="34" stroke="currentColor" strokeWidth=".7" />
-      <path d="M0-40L34.6 20H-34.6Z M0 40L-34.6-20H34.6Z" stroke="currentColor" strokeWidth=".7" strokeLinejoin="round" />
-      <circle r="12" stroke="currentColor" strokeWidth=".7" />
+      <path d="M4.5 11.5l7-7M5.5 4.5h6v6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -72,15 +33,7 @@ export function WaIcon({ className = "wa-ico" }: { className?: string }) {
 }
 
 /** Enlace a WhatsApp con mensaje ya escrito. */
-export function Wa({
-  text,
-  children,
-  className = "",
-}: {
-  text: string;
-  children: React.ReactNode;
-  className?: string;
-}) {
+export function Wa({ text, children, className = "" }: { text: string; children: React.ReactNode; className?: string }) {
   return (
     <a className={className} href={wa(text)} target="_blank" rel="noopener noreferrer">
       {children}

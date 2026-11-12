@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource/cormorant-garamond/300.css";
-import "@fontsource/cormorant-garamond/400.css";
-import "@fontsource/cormorant-garamond/500.css";
-import "@fontsource/cormorant-garamond/300-italic.css";
-import "@fontsource/cormorant-garamond/400-italic.css";
+import "@fontsource-variable/fraunces/full.css";
+import "@fontsource-variable/fraunces/full-italic.css";
 import "@fontsource-variable/dm-sans/wght.css";
 import "./globals.css";
 import { SITE, FAQ } from "@/lib/site";
@@ -37,7 +34,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#2F5546",
+  themeColor: "#24463A",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",

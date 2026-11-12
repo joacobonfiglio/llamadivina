@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Reveal from "@/components/Reveal";
-import { Caminos, Frase, Hero, Invitacion, Pie, Preguntas, Primer, SoyMay, Valores } from "@/components/Secciones";
+import { Cierre, Hero, Manifiesto, Pie, Preguntas, Primer, Sesiones, SoyMay } from "@/components/Secciones";
 
 export default function Home() {
   return (
@@ -11,13 +11,12 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <Manifiesto />
+        <Sesiones />
         <SoyMay />
-        <Valores />
-        <Frase />
-        <Caminos />
         <Primer />
         <Preguntas />
-        <Invitacion />
+        <Cierre />
       </main>
       <Pie />
       <Reveal />
